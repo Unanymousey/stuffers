@@ -26,6 +26,15 @@ jobs:
           cd build-web
           emmake make -j$(nproc)
 
+      - name: Download game data
+        run: |
+          mkdir -p webgame
+          curl -L "https://github.com/Unanymousey/stuffers/releases/download/endacopia/acsetup.cfg" -o webgame/acsetup.cfg
+          curl -L "https://github.com/Unanymousey/stuffers/releases/download/endacopia/audio.vox" -o webgame/audio.vox
+          curl -L "https://github.com/Unanymousey/stuffers/releases/download/endacopia/Endacopia.ags" -o webgame/Endacopia.ags
+          curl -L "https://github.com/Unanymousey/stuffers/releases/download/endacopia/sp_speechsounds.vox" -o webgame/sp_speechsounds.vox
+          cp webgame/Endacopia.ags webgame/game.ags
+
       - name: Package output
         run: |
           mkdir -p output
